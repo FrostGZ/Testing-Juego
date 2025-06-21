@@ -30,3 +30,8 @@ def test_ataque_fuera_de_rango():
     tablero = Tablero()
     with pytest.raises(IndexError):
         tablero.recibir_ataque(20, 20)  # fuera de rango
+
+def test_colocar_barco_fuera_de_rango():
+    tablero = Tablero()
+    with pytest.raises(IndexError):
+        tablero.colocar_barco(15, -1)
