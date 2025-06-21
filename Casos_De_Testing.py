@@ -143,3 +143,10 @@ def test_estado_despues_de_ataques():
     tablero.recibir_ataque(1, 1)
     assert tablero.celdas[7][7] == 'X'
     assert tablero.celdas[1][1] == 'O'
+
+def test_ataque_en_celda_ya_atacada_con_barco():
+    tablero = Tablero()
+    tablero.colocar_barco(4, 4)
+    tablero.recibir_ataque(4, 4)
+    resultado = tablero.recibir_ataque(4, 4)
+    assert resultado == "Ya atacaste esta casilla."
