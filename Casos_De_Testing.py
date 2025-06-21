@@ -112,3 +112,14 @@ def test_colocar_barco_superpuesto():
     tablero.colocar_barco(1, 1)
     tablero.colocar_barco(1, 1)  # Se permite; validación opcional
     assert tablero.celdas[1][1] == 'B'
+
+def test_ataque_a_todas_las_celdas_vacias():
+    tablero = Tablero()
+    total_agua = 0
+    for fila in range(10):
+        for col in range(10):
+            if tablero.celdas[fila][col] == ' ':
+                resultado = tablero.recibir_ataque(fila, col)
+                if resultado == "Agua.":
+                    total_agua += 1
+    assert total_agua == 100  # tablero vacío
