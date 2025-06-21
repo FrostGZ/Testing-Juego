@@ -135,3 +135,11 @@ def test_todo_tablero_vacio():
     for fila in range(10):
         for col in range(10):
             assert tablero.celdas[fila][col] == ' '
+
+def test_estado_despues_de_ataques():
+    tablero = Tablero()
+    tablero.colocar_barco(7, 7)
+    tablero.recibir_ataque(7, 7)
+    tablero.recibir_ataque(1, 1)
+    assert tablero.celdas[7][7] == 'X'
+    assert tablero.celdas[1][1] == 'O'
