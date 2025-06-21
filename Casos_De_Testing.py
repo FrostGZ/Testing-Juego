@@ -106,3 +106,9 @@ def test_poder_radar_simulado_no_detecta_barco():
     tablero = Tablero()
     estado = tablero.celdas[2][3]
     assert estado == ' '
+
+def test_colocar_barco_superpuesto():
+    tablero = Tablero()
+    tablero.colocar_barco(1, 1)
+    tablero.colocar_barco(1, 1)  # Se permite; validación opcional
+    assert tablero.celdas[1][1] == 'B'
