@@ -56,3 +56,8 @@ def test_colocar_barco_en_borde_superior_izquierdo():
     tablero = Tablero()
     tablero.colocar_barco(0, 0)
     assert tablero.celdas[0][0] == 'B'
+
+def test_colocar_barco_en_borde_inferior_derecho():
+    tablero = Tablero()
+    tablero.colocar_barco(9, 9)
+    assert tablero.celdas[9][9] == 'B'
