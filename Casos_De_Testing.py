@@ -78,3 +78,11 @@ def test_no_colocar_barco_fuera_limites_excedido():
     tablero = Tablero()
     with pytest.raises(IndexError):
         tablero.colocar_barco(10, 0)  # índice fuera de 0–9
+
+def test_ataque_exitoso_y_fallido_mismo_juego():
+    tablero = Tablero()
+    tablero.colocar_barco(4, 4)
+    resultado1 = tablero.recibir_ataque(4, 4)
+    resultado2 = tablero.recibir_ataque(2, 2)
+    assert resultado1 == "¡Impacto!"
+    assert resultado2 == "Agua."
