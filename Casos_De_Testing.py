@@ -86,3 +86,11 @@ def test_ataque_exitoso_y_fallido_mismo_juego():
     resultado2 = tablero.recibir_ataque(2, 2)
     assert resultado1 == "¡Impacto!"
     assert resultado2 == "Agua."
+
+def test_colocar_y_destruir_barco_grande_horizontal():
+    tablero = Tablero()
+    for i in range(3, 6):  # barco de tamaño 3
+        tablero.colocar_barco(5, i)
+        assert tablero.celdas[5][i] == 'B'
+        tablero.recibir_ataque(5, i)
+        assert tablero.celdas[5][i] == 'X'
