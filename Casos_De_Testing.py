@@ -44,3 +44,10 @@ def test_todos_los_barcos_hundidos():
     tablero.recibir_ataque(0, 1)
     assert tablero.celdas[0][0] == 'X'
     assert tablero.celdas[0][1] == 'X'
+
+def test_activar_poder_simulado():
+    tablero = Tablero()
+    tablero.colocar_barco(4, 4)
+    # Simulación: poder de radar revela la celda sin atacar
+    estado = tablero.celdas[4][4]
+    assert estado == 'B'  # El radar ve que hay un barco
