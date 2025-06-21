@@ -19,3 +19,9 @@ def test_ataque_repetido():
     tablero.recibir_ataque(2, 2)  # Agua
     resultado = tablero.recibir_ataque(2, 2)
     assert resultado == "Ya atacaste esta casilla."
+
+def test_colocar_barco_sobre_barco():
+    tablero = Tablero()
+    tablero.colocar_barco(1, 1)
+    tablero.colocar_barco(1, 1)  # Se permite sin error, pero deberías validar si es deseable
+    assert tablero.celdas[1][1] == 'B'
