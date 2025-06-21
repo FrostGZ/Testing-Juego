@@ -94,3 +94,10 @@ def test_colocar_y_destruir_barco_grande_horizontal():
         assert tablero.celdas[5][i] == 'B'
         tablero.recibir_ataque(5, i)
         assert tablero.celdas[5][i] == 'X'
+
+def test_poder_radar_simulado_detecta_barco():
+    tablero = Tablero()
+    tablero.colocar_barco(6, 6)
+    # Simulación: radar solo “lee” la celda
+    estado = tablero.celdas[6][6]
+    assert estado == 'B'
