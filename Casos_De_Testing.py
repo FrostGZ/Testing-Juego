@@ -129,3 +129,9 @@ def test_ataque_diagonal():
     tablero.colocar_barco(3, 3)
     resultado = tablero.recibir_ataque(3, 3)
     assert resultado == "¡Impacto!"
+
+def test_todo_tablero_vacio():
+    tablero = Tablero()
+    for fila in range(10):
+        for col in range(10):
+            assert tablero.celdas[fila][col] == ' '
