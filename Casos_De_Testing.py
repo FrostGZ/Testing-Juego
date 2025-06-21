@@ -73,3 +73,8 @@ def test_no_colocar_barco_fuera_limites_negativo():
     tablero = Tablero()
     with pytest.raises(IndexError):
         tablero.colocar_barco(-1, 0)
+
+def test_no_colocar_barco_fuera_limites_excedido():
+    tablero = Tablero()
+    with pytest.raises(IndexError):
+        tablero.colocar_barco(10, 0)  # índice fuera de 0–9
