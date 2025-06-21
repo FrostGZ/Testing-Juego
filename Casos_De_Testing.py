@@ -123,3 +123,9 @@ def test_ataque_a_todas_las_celdas_vacias():
                 if resultado == "Agua.":
                     total_agua += 1
     assert total_agua == 100  # tablero vacío
+
+def test_ataque_diagonal():
+    tablero = Tablero()
+    tablero.colocar_barco(3, 3)
+    resultado = tablero.recibir_ataque(3, 3)
+    assert resultado == "¡Impacto!"
