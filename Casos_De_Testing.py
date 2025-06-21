@@ -101,3 +101,8 @@ def test_poder_radar_simulado_detecta_barco():
     # Simulación: radar solo “lee” la celda
     estado = tablero.celdas[6][6]
     assert estado == 'B'
+
+def test_poder_radar_simulado_no_detecta_barco():
+    tablero = Tablero()
+    estado = tablero.celdas[2][3]
+    assert estado == ' '
