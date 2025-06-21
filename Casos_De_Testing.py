@@ -13,3 +13,9 @@ def test_agua():
     resultado = tablero.recibir_ataque(2, 2)
     assert resultado == "Agua."
     assert tablero.celdas[2][2] == 'O'
+
+def test_ataque_repetido():
+    tablero = Tablero()
+    tablero.recibir_ataque(2, 2)  # Agua
+    resultado = tablero.recibir_ataque(2, 2)
+    assert resultado == "Ya atacaste esta casilla."
