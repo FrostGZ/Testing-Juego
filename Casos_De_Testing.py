@@ -51,3 +51,8 @@ def test_activar_poder_simulado():
     # Simulación: poder de radar revela la celda sin atacar
     estado = tablero.celdas[4][4]
     assert estado == 'B'  # El radar ve que hay un barco
+
+def test_colocar_barco_en_borde_superior_izquierdo():
+    tablero = Tablero()
+    tablero.colocar_barco(0, 0)
+    assert tablero.celdas[0][0] == 'B'
