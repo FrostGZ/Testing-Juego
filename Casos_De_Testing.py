@@ -25,3 +25,8 @@ def test_colocar_barco_sobre_barco():
     tablero.colocar_barco(1, 1)
     tablero.colocar_barco(1, 1)  # Se permite sin error, pero deberías validar si es deseable
     assert tablero.celdas[1][1] == 'B'
+
+def test_ataque_fuera_de_rango():
+    tablero = Tablero()
+    with pytest.raises(IndexError):
+        tablero.recibir_ataque(20, 20)  # fuera de rango
