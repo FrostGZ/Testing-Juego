@@ -68,3 +68,8 @@ def test_colocar_multiples_barcos_en_fila():
         tablero.colocar_barco(0, i)
     for i in range(5):
         assert tablero.celdas[0][i] == 'B'
+
+def test_no_colocar_barco_fuera_limites_negativo():
+    tablero = Tablero()
+    with pytest.raises(IndexError):
+        tablero.colocar_barco(-1, 0)
