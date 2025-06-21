@@ -150,3 +150,9 @@ def test_ataque_en_celda_ya_atacada_con_barco():
     tablero.recibir_ataque(4, 4)
     resultado = tablero.recibir_ataque(4, 4)
     assert resultado == "Ya atacaste esta casilla."
+
+def test_ataque_en_celda_ya_atacada_con_agua():
+    tablero = Tablero()
+    tablero.recibir_ataque(2, 2)
+    resultado = tablero.recibir_ataque(2, 2)
+    assert resultado == "Ya atacaste esta casilla."
