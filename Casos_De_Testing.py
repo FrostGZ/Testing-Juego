@@ -61,3 +61,10 @@ def test_colocar_barco_en_borde_inferior_derecho():
     tablero = Tablero()
     tablero.colocar_barco(9, 9)
     assert tablero.celdas[9][9] == 'B'
+
+def test_colocar_multiples_barcos_en_fila():
+    tablero = Tablero()
+    for i in range(5):
+        tablero.colocar_barco(0, i)
+    for i in range(5):
+        assert tablero.celdas[0][i] == 'B'
