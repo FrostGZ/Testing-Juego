@@ -35,3 +35,12 @@ def test_colocar_barco_fuera_de_rango():
     tablero = Tablero()
     with pytest.raises(IndexError):
         tablero.colocar_barco(15, -1)
+
+def test_todos_los_barcos_hundidos():
+    tablero = Tablero()
+    tablero.colocar_barco(0, 0)
+    tablero.colocar_barco(0, 1)
+    tablero.recibir_ataque(0, 0)
+    tablero.recibir_ataque(0, 1)
+    assert tablero.celdas[0][0] == 'X'
+    assert tablero.celdas[0][1] == 'X'
