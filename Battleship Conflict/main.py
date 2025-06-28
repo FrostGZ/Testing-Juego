@@ -25,6 +25,7 @@ def main():
     jugador1.tablero.colocar_barco(0, 0, 2, 'H')
     jugador2.tablero.colocar_barco(1, 1, 3, 'V')
 
+    open(LOG_ARCHIVO, "w").close()  # Limpia log anterior
     escribir_log("🔄 Juego iniciado.")
     juego = Juego(jugador1, jugador2)
     juego.iniciar_temporizador()
@@ -51,6 +52,7 @@ def main():
                 resultado = oponente.tablero.recibir_ataque(fila, col)
                 print(f"🛠 Resultado: {resultado}")
                 escribir_log(f"{jugador.nombre} atacó a ({fila}, {col}) -> {resultado}")
+                juego.registrar_accion()
 
             elif opcion == "2":
                 fila = int(input("Fila central del radar: "))
@@ -60,6 +62,7 @@ def main():
                 for (f, c), valor in resultados.items():
                     print(f"({f},{c}) -> {valor}")
                 escribir_log(f"{jugador.nombre} usó Radar en ({fila}, {col}) -> {resultados}")
+                juego.registrar_accion()
 
             elif opcion == "3":
                 fila = int(input("Fila inicial: "))
@@ -70,6 +73,7 @@ def main():
                 for (f, c), mensaje in resultados:
                     print(f"({f},{c}) -> {mensaje}")
                 escribir_log(f"{jugador.nombre} usó Ráfaga desde ({fila}, {col}) dirección {direccion} -> {resultados}")
+                juego.registrar_accion()
 
             else:
                 print("⚠️ Opción inválida.")
@@ -88,12 +92,16 @@ def main():
             print("\nJuego interrumpido.")
             break
 
+    # Al finalizar el juego
     if juego.juego_terminado:
-        ganador = juego.jugadores[1 - juego.turno_actual]
-        barcos_restantes = juego.contar_barcos(ganador.tablero)
-        escribir_log(f"🏁 Juego terminado. Ganador: {ganador.nombre} con {barcos_restantes} barcos restantes.")
+        if juego.rondas_inactivas >= juego.MAX_INACTIVIDAD_CONSECUTIVA:
+            print("❌ El juego terminó por inactividad prolongada. Resultado: EMPATE.")
+            escribir_log("❌ Juego terminado por inactividad prolongada. Resultado: EMPATE.")
+        else:
+            ganador = juego.jugadores[1 - juego.turno_actual]
+            barcos_restantes = juego.contar_barcos(ganador.tablero)
+            print(f"🎉 ¡El ganador es {ganador.nombre} con {barcos_restantes} barcos restantes!")
+            escribir_log(f"🏁 Juego terminado. Ganador: {ganador.nombre} con {barcos_restantes} barcos restantes.")
 
 if __name__ == "__main__":
-    # Limpiar log anterior al iniciar
-    open(LOG_ARCHIVO, "w").close()
     main()
